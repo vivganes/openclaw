@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
+import type { RuntimeEnv } from "../../runtime.js";
 
 // Mock clack prompts to simulate user cancelling (Esc => undefined)
 vi.mock("@clack/prompts", () => ({
@@ -19,7 +20,7 @@ describe("models auth add - cancellation", () => {
     const mockedClack = vi.mocked(clack, true);
     mockedClack.select.mockResolvedValueOnce(undefined);
 
-    const runtime = { log: vi.fn(), error: vi.fn(), exit: vi.fn() } as any;
+    const runtime = { log: vi.fn(), error: vi.fn(), exit: vi.fn() } as unknown as RuntimeEnv;
 
     const { modelsAuthAddCommand } = await import("./auth.js");
 
@@ -36,7 +37,7 @@ describe("models auth add - cancellation", () => {
     mockedClack.select.mockResolvedValueOnce("anthropic");
     mockedClack.select.mockResolvedValueOnce(undefined);
 
-    const runtime = { log: vi.fn(), error: vi.fn(), exit: vi.fn() } as any;
+    const runtime = { log: vi.fn(), error: vi.fn(), exit: vi.fn() } as unknown as RuntimeEnv;
 
     const { modelsAuthAddCommand } = await import("./auth.js");
 
