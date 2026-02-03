@@ -110,7 +110,9 @@ export async function sendChatMessage(
   // Reset commands (/new, /reset) are processed by the server but not stored
   // in session history. Adding them optimistically would cause them to disappear
   // when history is reloaded after the command completes.
-  if (!isChatResetCommand(msg)) {
+  // Attachment-only messages are also not added optimistically to avoid issues
+  // if the server treats them as reset commands.
+  if (!isChatResetCommand(msg) && (msg || !hasAttachments)) {
     state.chatMessages = [
       ...state.chatMessages,
       {

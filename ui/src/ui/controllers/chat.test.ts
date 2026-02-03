@@ -1,13 +1,12 @@
 import { describe, expect, it, vi } from "vitest";
-import type { GatewayBrowserClient } from "../gateway";
-import { handleChatEvent, sendChatMessage, type ChatEventPayload, type ChatState } from "./chat";
+import type { GatewayBrowserClient } from "../gateway.js";
+import { handleChatEvent, sendChatMessage, type ChatEventPayload, type ChatState } from "./chat.js";
 
 function createState(overrides: Partial<ChatState> = {}): ChatState {
   return {
     chatAttachments: [],
     chatLoading: false,
     chatMessage: "",
-    chatAttachments: [],
     chatMessages: [],
     chatRunId: null,
     chatSending: false,
@@ -101,10 +100,12 @@ describe("sendChatMessage", () => {
     const request = vi.fn().mockResolvedValue({});
     const mock = {
       request,
-      connected: true,
+      get connected() {
+        return true;
+      },
       start: vi.fn(),
       stop: vi.fn(),
-    } satisfies Partial<GatewayBrowserClient>;
+    };
     return {
       client: mock as unknown as GatewayBrowserClient,
       request,
