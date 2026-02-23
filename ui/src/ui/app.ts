@@ -334,6 +334,7 @@ export class OpenClawApp extends LitElement {
   @state() cronBusy = false;
 
   @state() updateAvailable: import("./types.js").UpdateAvailable | null = null;
+  @state() updateBannerDismissed = false;
 
   @state() skillsLoading = false;
   @state() skillsReport: SkillStatusReport | null = null;

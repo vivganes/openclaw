@@ -14,7 +14,7 @@
   border-right: none;
   text-align: center;
   font-weight: 500;
-  padding: 10px 16px;
+  padding: 10px 40px 10px 16px;
 }
 
 .update-banner__btn {
@@ -27,6 +27,29 @@
 
 .update-banner__btn:hover:not(:disabled) {
   background: rgba(239, 68, 68, 0.15);
+}
+
+.update-banner__content {
+  margin-right: 8px;
+}
+
+.update-banner__close {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--danger);
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0 4px;
+  opacity: 0.7;
+}
+
+.update-banner__close:hover {
+  opacity: 1;
 }
 
 /* ===========================================
